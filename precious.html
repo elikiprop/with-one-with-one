@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Precious ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #f67280 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Hearts Background */
+        #hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-heart {
+            position: absolute;
+            animation: float 6s linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            animation: sparkle 1.5s ease-out;
+            z-index: 999;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1) rotate(180deg); }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '💕';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: -30px;
+            animation: pulse 3s infinite;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #c06c84;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: pulse 2s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .header-subtitle {
+            font-size: 1.3em;
+            color: #f67280;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .header-date {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #ff6b9d, #f67280);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .nav-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(135deg, #c06c84, #ff6b9d);
+            transform: scale(1.05);
+        }
+
+        /* Section Base Styles */
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: #c06c84;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff6b9d, transparent);
+        }
+
+        /* Messages Section */
+        .message-form {
+            background: #fff0f5;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 2px solid #ff6b9d;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group select,
+        .form-group textarea,
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ff6b9d;
+            border-radius: 8px;
+            font-size: 1em;
+            background: white;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group select:focus,
+        .form-group textarea:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #c06c84;
+            box-shadow: 0 0 10px rgba(192, 108, 132, 0.3);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #ff6b9d, #f67280);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Messages Display */
+        .messages-container {
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #fffaf0;
+            border-radius: 15px;
+            border: 2px solid #ff6b9d;
+        }
+
+        .message-card {
+            background: linear-gradient(135deg, #ff6b9d, #f67280);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Love Counter Section */
+        .counter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .counter-card {
+            background: linear-gradient(135deg, #ffe4e1, #ffb6c1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .counter-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .counter-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #c06c84;
+            margin: 10px 0;
+        }
+
+        .counter-label {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .counter-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Reasons Section */
+        .reasons-grid {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #ff6b9d;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .reason-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .reason-number {
+            display: inline-block;
+            background: #ff6b9d;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Wishes Section */
+        .wishes-container {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .wish-card {
+            background: linear-gradient(135deg, #ffeef8, #ffe4ec);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wish-card::before {
+            content: '✨';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3em;
+            opacity: 0.2;
+        }
+
+        /* Memory Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #ff6b9d, #f67280);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+            padding-right: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: left;
+            padding-left: 50%;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 4px white, 0 0 0 8px #ff6b9d;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: calc(50% - 10px);
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: calc(50% - 10px);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            background: #fff;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            text-align: center;
+            padding: 10px;
+            color: #c06c84;
+            font-weight: bold;
+        }
+
+        /* Promise Tracker */
+        .promise-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .promise-item:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .promise-checkbox {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: #ff6b9d;
+        }
+
+        /* Love Quiz */
+        .quiz-option {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .quiz-option:hover {
+            border-color: #ff6b9d;
+            background: #fff0f5;
+        }
+
+        .quiz-result {
+            background: linear-gradient(135deg, #c06c84, #f67280);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .nav-container { grid-template-columns: repeat(2, 1fr); }
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                text-align: left;
+                padding-left: 40px;
+                padding-right: 20px;
+            }
+            .timeline::before { left: 20px; }
+            .timeline-dot { left: 11px !important; }
+        }
+
+        /* Cute animations */
+        @keyframes heartPop {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        }
+
+        .heart-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            z-index: 9999;
+            animation: heartPop 1s ease;
+            pointer-events: none;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #ffe4e1;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ff6b9d;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c06c84;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Hearts Background -->
+    <div id="hearts-container"></div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        
+        <!-- Header Section -->
+        <header>
+            <h1>🎂 Happy Birthday Precious 🎂</h1>
+            <p class="header-subtitle">Celebrating You Today, My Love! 🎉</p>
+            <p class="header-date">Sunday, February 09, 2026</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="showSection('messages')" id="btn-messages">
+                💌 Messages
+            </button>
+            <button class="nav-btn" onclick="showSection('counter')" id="btn-counter">
+                ⏰ Love Counter
+            </button>
+            <button class="nav-btn" onclick="showSection('reasons')" id="btn-reasons">
+                💖 100 Reasons
+            </button>
+            <button class="nav-btn" onclick="showSection('gallery')" id="btn-gallery">
+                📸 Gallery
+            </button>
+            <button class="nav-btn" onclick="showSection('timeline')" id="btn-timeline">
+                📅 Our Story
+            </button>
+            <button class="nav-btn" onclick="showSection('wishes')" id="btn-wishes">
+                ✨ My Wishes
+            </button>
+            <button class="nav-btn" onclick="showSection('promises')" id="btn-promises">
+                🤝 Promises
+            </button>
+            <button class="nav-btn" onclick="showSection('quiz')" id="btn-quiz">
+                🎮 Love Quiz
+            </button>
+            <button class="nav-btn" onclick="showSection('about')" id="btn-about">
+                ❤️ About Us
+            </button>
+        </div>
+
+        <!-- Messages Section -->
+        <div id="messages-section" class="section active">
+            <h2 class="section-title">💌 Our Love Messages</h2>
+            
+            <div class="message-form">
+                <h3 style="color: #f67280; margin-bottom: 20px;">Send a Message</h3>
+                
+                <div class="form-group">
+                    <label>From:</label>
+                    <select id="sender">
+                        <option value="0717677588">You (0717677588)</option>
+                        <option value="0726900715">Precious (0726900715)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>To:</label>
+                    <select id="recipient">
+                        <option value="0726900715">Precious (0726900715)</option>
+                        <option value="0717677588">You (0717677588)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Your Message:</label>
+                    <textarea id="message-text" placeholder="Write your love message here..."></textarea>
+                </div>
+
+                <button onclick="sendMessage()" class="submit-btn">
+                    Send Love Message 💕
+                </button>
+            </div>
+
+            <div id="messages-container" class="messages-container">
+                <p style="text-align: center; color: #999; font-style: italic;">No messages yet. Send your first love message! 💝</p>
+            </div>
+        </div>
+
+        <!-- Love Counter Section -->
+        <div id="counter-section" class="section">
+            <h2 class="section-title">⏰ Counting Our Love</h2>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <p style="color: #666; font-size: 1.1em;">Since we became special to each other</p>
+                <div style="background: #fff0f5; padding: 20px; border-radius: 15px; margin-top: 15px; border: 2px solid #ff6b9d;">
+                    <label style="display: block; color: #666; margin-bottom: 10px; font-weight: bold;">Set Our Special Date:</label>
+                    <input type="date" id="relationship-start" style="padding: 10px; border: 2px solid #ff6b9d; border-radius: 8px; font-size: 1em;">
+                    <button onclick="updateCounter()" style="background: #ff6b9d; color: white; border: none; padding: 10px 20px; border-radius: 8px; margin-left: 10px; cursor: pointer; font-weight: bold;">Update</button>
+                </div>
+            </div>
+
+            <div class="counter-grid">
+                <div class="counter-card">
+                    <div class="counter-icon">📅</div>
+                    <div class="counter-number" id="days-counter">0</div>
+                    <div class="counter-label">Days Together</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-icon">⏰</div>
+                    <div class="counter-number" id="hours-counter">0</div>
+                    <div class="counter-label">Hours of Love</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-icon">⏱️</div>
+                    <div class="counter-number" id="minutes-counter">0</div>
+                    <div class="counter-label">Minutes of Joy</div>
+                </div>
+                <div class="counter-card">
+                    <div class="counter-icon">💕</div>
+                    <div class="counter-number" id="heartbeats-counter">0</div>
+                    <div class="counter-label">Heartbeats for You</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 100 Reasons Section -->
+        <div id="reasons-section" class="section">
+            <h2 class="section-title">💖 100 Reasons Why I Love You</h2>
+            
+            <div class="message-form">
+                <h3 style="color: #f67280; margin-bottom: 20px;">Add a New Reason</h3>
+                <div class="form-group">
+                    <textarea id="new-reason" placeholder="Write a reason why you love Precious..."></textarea>
+                </div>
+                <button onclick="addReason()" class="submit-btn">Add Reason 💝</button>
+            </div>
+
+            <div id="reasons-grid" class="reasons-grid">
+                <!-- Default reasons will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div id="gallery-section" class="section">
+            <h2 class="section-title">📸 Our Beautiful Memories</h2>
+            
+            <div class="message-form" style="text-align: center;">
+                <h3 style="color: #f67280; margin-bottom: 15px;">Add Our Photos</h3>
+                <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                <button onclick="document.getElementById('photo-upload').click()" class="submit-btn">
+                    📷 Upload Photo
+                </button>
+                <p style="color: #666; margin-top: 10px; font-size: 0.9em;">Click to add special moments of us together</p>
+            </div>
+
+            <div id="gallery-grid" class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23ffe4e1' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='0.3em'%3E💕%3C/text%3E%3C/svg%3E">
+                    <p class="gallery-caption">Our Love</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23ffb6c1' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='0.3em'%3E🌹%3C/text%3E%3C/svg%3E">
+                    <p class="gallery-caption">Forever Together</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23ffc0cb' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='0.3em'%3E❤️%3C/text%3E%3C/svg%3E">
+                    <p class="gallery-caption">You & Me</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div id="timeline-section" class="section">
+            <h2 class="section-title">📅 Our Love Story Timeline</h2>
+            
+            <div class="message-form">
+                <h3 style="color: #f67280; margin-bottom: 20px;">Add a Memory</h3>
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="date" id="memory-date">
+                </div>
+                <div class="form-group">
+                    <label>Memory Title:</label>
+                    <input type="text" id="memory-title" placeholder="e.g., Our First Date">
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea id="memory-description" placeholder="Tell the story of this special moment..."></textarea>
+                </div>
+                <button onclick="addMemory()" class="submit-btn">Add Memory 💫</button>
+            </div>
+
+            <div id="timeline-container" class="timeline">
+                <!-- Timeline items will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Wishes Section -->
+        <div id="wishes-section" class="section">
+            <h2 class="section-title">✨ My Wishes for Us</h2>
+            
+            <div class="wishes-container">
+                <div class="wish-card">
+                    <h3 style="color: #c06c84; margin-bottom: 15px;">🌟 For Today</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        I wish for this day to be filled with joy, laughter, and sweet moments that we'll cherish forever. May every smile we share bring us closer together.
+                    </p>
+                </div>
+                <div class="wish-card">
+                    <h3 style="color: #c06c84; margin-bottom: 15px;">💝 For This Year</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        I wish for 2026 to bring us countless adventures, beautiful memories, and even deeper love. May we grow together and support each other through everything.
+                    </p>
+                </div>
+                <div class="wish-card">
+                    <h3 style="color: #c06c84; margin-bottom: 15px;">🌈 For Our Future</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        I wish for a lifetime of happiness with you, Ruth. May our love continue to flourish, and may we build a beautiful future together, filled with dreams come true.
+                    </p>
+                </div>
+                <div class="wish-card">
+                    <h3 style="color: #c06c84; margin-bottom: 15px;">💫 Forever & Always</h3>
+                    <p style="color: #666; line-height: 1.8;">
+                        I wish to wake up every day grateful for you, to make you smile, to be your support, and to love you more with each passing moment. You are my everything.
+                    </p>
+                </div>
+            </div>
+
+            <div class="message-form" style="margin-top: 30px;">
+                <h3 style="color: #f67280; margin-bottom: 20px;">Add Your Own Wish</h3>
+                <div class="form-group">
+                    <label>Wish Title:</label>
+                    <input type="text" id="wish-title" placeholder="e.g., For Our Next Adventure">
+                </div>
+                <div class="form-group">
+                    <label>Your Wish:</label>
+                    <textarea id="wish-text" placeholder="Share your wish for us..."></textarea>
+                </div>
+                <button onclick="addWish()" class="submit-btn">Add Wish ✨</button>
+            </div>
+        </div>
+
+        <!-- Promises Section -->
+        <div id="promises-section" class="section">
+            <h2 class="section-title">🤝 My Promises to You</h2>
+            
+            <div style="background: #fff0f5; padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <h3 style="color: #f67280; margin-bottom: 20px;">Promises I've Made & Kept</h3>
+                <div id="promises-list">
+                    <!-- Promises will be loaded here -->
+                </div>
+            </div>
+
+            <div class="message-form">
+                <h3 style="color: #f67280; margin-bottom: 20px;">Make a New Promise</h3>
+                <div class="form-group">
+                    <textarea id="new-promise" placeholder="I promise to..."></textarea>
+                </div>
+                <button onclick="addPromise()" class="submit-btn">Make Promise 🤝</button>
+            </div>
+        </div>
+
+        <!-- Love Quiz Section -->
+        <div id="quiz-section" class="section">
+            <h2 class="section-title">🎮 How Well Do You Know Precious?</h2>
+            
+            <div id="quiz-container">
+                <div style="background: #fff0f5; padding: 30px; border-radius: 15px; text-align: center;">
+                    <p style="color: #666; font-size: 1.2em; margin-bottom: 20px;">
+                        Test your knowledge about your relationship! Answer questions to see how well you know each other.
+                    </p>
+                    <button onclick="startQuiz()" class="submit-btn" style="max-width: 300px; margin: 0 auto;">
+                        Start Quiz 💕
+                    </button>
+                </div>
+            </div>
+
+            <div id="quiz-questions" style="display: none;">
+                <!-- Quiz questions will appear here -->
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about-section" class="section">
+            <h2 class="section-title">❤️ Our Love Story</h2>
+            
+            <div style="text-align: center; padding: 20px;">
+                <div style="font-size: 5em; margin-bottom: 20px;">💑</div>
+                <h3 style="color: #f67280; font-size: 1.8em; margin-bottom: 15px;">To My Dearest Precious</h3>
+                <p style="color: #666; font-size: 1.2em; line-height: 1.8; max-width: 700px; margin: 0 auto 20px;">
+                    This website is a special birthday gift created just for you. Every message, every photo, and every moment we share here is a testament to how much you mean to me.
+                </p>
+                <p style="color: #666; font-size: 1.2em; line-height: 1.8; max-width: 700px; margin: 0 auto 20px;">
+                    You bring light into my life every single day. Your smile brightens my world, your laughter fills my heart with joy, and your love makes everything worthwhile.
+                </p>
+                <p style="color: #666; font-size: 1.2em; line-height: 1.8; max-width: 700px; margin: 0 auto 20px;">
+                    Happy Birthday 2026, my love! Here's to you, our memories, and all the beautiful moments yet to come. 🎂
+                </p>
+                <div style="margin-top: 30px; padding: 20px; background: #fff0f5; border-radius: 15px; border: 2px solid #ff6b9d;">
+                    <p style="color: #c06c84; font-size: 1.5em; margin: 10px 0; font-weight: bold;">💕 You 💕</p>
+                    <p style="color: #666; font-size: 1.1em; margin: 5px 0;">0717677588</p>
+                    <p style="color: #c06c84; font-size: 2em; margin: 15px 0;">❤️</p>
+                    <p style="color: #c06c84; font-size: 1.5em; margin: 10px 0; font-weight: bold;">💕 Precious 💕</p>
+                    <p style="color: #666; font-size: 1.1em; margin: 5px 0;">0726900715</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p style="margin: 5px;">Made with 💖 for Precious's Birthday 2026</p>
+            <p style="margin: 5px;">All my love, forever and always 🎂</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Floating Hearts Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            const hearts = ['❤️', '💕', '💖', '💗', '💝', '💘'];
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.opacity = '0.7';
+            heart.style.bottom = '-50px';
+            
+            document.getElementById('hearts-container').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        setInterval(createHeart, 800);
+
+        // Sparkle Effect
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1500);
+        }
+
+        // Add sparkles on click
+        document.addEventListener('click', (e) => {
+            createSparkle(e.clientX, e.clientY);
+        });
+
+        // Section Navigation
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(section + '-section').classList.add('active');
+            document.getElementById('btn-' + section).classList.add('active');
+            
+            // Load section data
+            if (section === 'messages') loadMessages();
+            if (section === 'counter') loadCounter();
+            if (section === 'reasons') loadReasons();
+            if (section === 'gallery') loadGallery();
+            if (section === 'timeline') loadTimeline();
+            if (section === 'promises') loadPromises();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Message System
+        function sendMessage() {
+            const sender = document.getElementById('sender').value;
+            const recipient = document.getElementById('recipient').value;
+            const messageText = document.getElementById('message-text').value.trim();
+            
+            if (!messageText) {
+                alert('Please write a message! 💕');
+                return;
+            }
+            
+            const message = {
+                sender: sender,
+                recipient: recipient,
+                text: messageText,
+                timestamp: new Date().toLocaleString(),
+                id: Date.now()
+            };
+            
+            let messages = JSON.parse(localStorage.getItem('loveMessages') || '[]');
+            messages.push(message);
+            localStorage.setItem('loveMessages', JSON.stringify(messages));
+            
+            document.getElementById('message-text').value = '';
+            showHeartAnimation();
+            loadMessages();
+        }
+
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem('loveMessages') || '[]');
+            const container = document.getElementById('messages-container');
+            
+            if (messages.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #999; font-style: italic;">No messages yet. Send your first love message! 💝</p>';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            messages.reverse().forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message-card';
+                const isSender = msg.sender === '0717677588';
+                
+                if (!isSender) {
+                    messageDiv.style.background = 'linear-gradient(135deg, #c06c84, #f67280)';
+                }
+                
+                messageDiv.innerHTML = `
+                    <div style="font-weight: bold; margin-bottom: 5px; display: flex; align-items: center; gap: 5px;">
+                        ${isSender ? '💌 You' : '💕 Precious'} 
+                        <span style="font-size: 0.8em; font-weight: normal; opacity: 0.8;">→ ${msg.recipient === '0726900715' ? 'Precious' : 'You'}</span>
+                    </div>
+                    <div style="font-size: 1.1em; margin-bottom: 8px; line-height: 1.5;">${msg.text}</div>
+                    <div style="font-size: 0.8em; opacity: 0.8; text-align: right;">${msg.timestamp}</div>
+                `;
+                
+                container.appendChild(messageDiv);
+            });
+        }
+
+        // Auto-switch sender/recipient
+        document.getElementById('sender').addEventListener('change', function() {
+            const sender = this.value;
+            const recipientSelect = document.getElementById('recipient');
+            recipientSelect.value = sender === '0717677588' ? '0726900715' : '0717677588';
+        });
+
+        // Love Counter
+        function updateCounter() {
+            const startDate = document.getElementById('relationship-start').value;
+            if (!startDate) {
+                alert('Please select your special date! 💕');
+                return;
+            }
+            localStorage.setItem('relationshipStart', startDate);
+            loadCounter();
+            showHeartAnimation();
+        }
+
+        function loadCounter() {
+            const startDate = localStorage.getItem('relationshipStart');
+            if (!startDate) {
+                document.getElementById('relationship-start').value = new Date().toISOString().split('T')[0];
+                return;
+            }
+            
+            document.getElementById('relationship-start').value = startDate;
+            
+            const start = new Date(startDate);
+            const now = new Date();
+            const diff = now - start;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor(diff / (1000 * 60));
+            const heartbeats = Math.floor(minutes * 72); // Average 72 beats per minute
+            
+            document.getElementById('days-counter').textContent = days.toLocaleString();
+            document.getElementById('hours-counter').textContent = hours.toLocaleString();
+            document.getElementById('minutes-counter').textContent = minutes.toLocaleString();
+            document.getElementById('heartbeats-counter').textContent = heartbeats.toLocaleString();
+        }
+
+        // Update counter every minute
+        setInterval(loadCounter, 60000);
+
+        // Reasons System
+        const defaultReasons = [
+            "Your smile lights up my entire world",
+            "The way you laugh makes my heart skip a beat",
+            "You understand me like no one else does",
+            "Your kindness touches everyone around you",
+            "You make every day an adventure",
+            "Your strength inspires me to be better",
+            "The way you care for others is beautiful",
+            "You believe in me even when I doubt myself",
+            "Your eyes sparkle when you're happy",
+            "You make me want to be the best version of myself"
+        ];
+
+        function loadReasons() {
+            let reasons = JSON.parse(localStorage.getItem('loveReasons') || '[]');
+            if (reasons.length === 0) {
+                reasons = defaultReasons;
+                localStorage.setItem('loveReasons', JSON.stringify(reasons));
+            }
+            
+            const container = document.getElementById('reasons-grid');
+            container.innerHTML = '';
+            
+            reasons.forEach((reason, index) => {
+                const reasonCard = document.createElement('div');
+                reasonCard.className = 'reason-card';
+                reasonCard.innerHTML = `
+                    <span class="reason-number">${index + 1}</span>
+                    <span style="color: #666; font-size: 1.1em;">${reason}</span>
+                `;
+                container.appendChild(reasonCard);
+            });
+        }
+
+        function addReason() {
+            const reasonText = document.getElementById('new-reason').value.trim();
+            if (!reasonText) {
+                alert('Please write a reason! 💕');
+                return;
+            }
+            
+            let reasons = JSON.parse(localStorage.getItem('loveReasons') || '[]');
+            reasons.push(reasonText);
+            localStorage.setItem('loveReasons', JSON.stringify(reasons));
+            
+            document.getElementById('new-reason').value = '';
+            showHeartAnimation();
+            loadReasons();
+        }
+
+        // Gallery System
+        document.getElementById('photo-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const photo = {
+                    id: Date.now(),
+                    data: event.target.result,
+                    caption: 'Our Special Moment',
+                    date: new Date().toLocaleDateString()
+                };
+                
+                let photos = JSON.parse(localStorage.getItem('lovePhotos') || '[]');
+                photos.push(photo);
+                localStorage.setItem('lovePhotos', JSON.stringify(photos));
+                
+                loadGallery();
+                showHeartAnimation();
+            };
+            reader.readAsDataURL(file);
+        });
+
+        function loadGallery() {
+            const photos = JSON.parse(localStorage.getItem('lovePhotos') || '[]');
+            const grid = document.getElementById('gallery-grid');
+            
+            // Clear uploaded photos only
+            const defaultImages = grid.querySelectorAll('.gallery-item');
+            while (grid.children.length > 3) {
+                grid.removeChild(grid.lastChild);
+            }
+            
+            photos.forEach(photo => {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'gallery-item';
+                photoDiv.innerHTML = `
+                    <img src="${photo.data}">
+                    <p class="gallery-caption">${photo.caption}</p>
+                    <button onclick="deletePhoto(${photo.id})" style="position: absolute; top: 10px; right: 10px; background: rgba(255,0,0,0.7); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 0.8em;">✕</button>
+                `;
+                grid.appendChild(photoDiv);
+            });
+        }
+
+        function deletePhoto(id) {
+            if (confirm('Delete this photo?')) {
+                let photos = JSON.parse(localStorage.getItem('lovePhotos') || '[]');
+                photos = photos.filter(p => p.id !== id);
+                localStorage.setItem('lovePhotos', JSON.stringify(photos));
+                loadGallery();
+            }
+        }
+
+        // Timeline System
+        function loadTimeline() {
+            let memories = JSON.parse(localStorage.getItem('loveMemories') || '[]');
+            
+            if (memories.length === 0) {
+                memories = [
+                    { date: '2025-12-25', title: 'A Special Christmas', description: 'We spent our first Christmas together, creating beautiful memories.' },
+                    { date: '2026-01-01', title: 'New Year Together', description: 'We welcomed 2026 hand in hand, dreaming of our future.' }
+                ];
+            }
+            
+            const container = document.getElementById('timeline-container');
+            container.innerHTML = '';
+            
+            memories.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(memory => {
+                const item = document.createElement('div');
+                item.className = 'timeline-item';
+                item.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 style="color: #c06c84; margin-bottom: 10px;">${memory.title}</h3>
+                        <p style="color: #999; font-size: 0.9em; margin-bottom: 10px;">${new Date(memory.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        <p style="color: #666; line-height: 1.6;">${memory.description}</p>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function addMemory() {
+            const date = document.getElementById('memory-date').value;
+            const title = document.getElementById('memory-title').value.trim();
+            const description = document.getElementById('memory-description').value.trim();
+            
+            if (!date || !title || !description) {
+                alert('Please fill in all fields! 💕');
+                return;
+            }
+            
+            const memory = { date, title, description, id: Date.now() };
+            let memories = JSON.parse(localStorage.getItem('loveMemories') || '[]');
+            memories.push(memory);
+            localStorage.setItem('loveMemories', JSON.stringify(memories));
+            
+            document.getElementById('memory-date').value = '';
+            document.getElementById('memory-title').value = '';
+            document.getElementById('memory-description').value = '';
+            
+            showHeartAnimation();
+            loadTimeline();
+        }
+
+        // Wishes System
+        function addWish() {
+            const title = document.getElementById('wish-title').value.trim();
+            const text = document.getElementById('wish-text').value.trim();
+            
+            if (!title || !text) {
+                alert('Please fill in both fields! 💕');
+                return;
+            }
+            
+            const wish = { title, text, id: Date.now() };
+            let wishes = JSON.parse(localStorage.getItem('customWishes') || '[]');
+            wishes.push(wish);
+            localStorage.setItem('customWishes', JSON.stringify(wishes));
+            
+            const wishCard = document.createElement('div');
+            wishCard.className = 'wish-card';
+            wishCard.innerHTML = `
+                <h3 style="color: #c06c84; margin-bottom: 15px;">✨ ${title}</h3>
+                <p style="color: #666; line-height: 1.8;">${text}</p>
+            `;
+            
+            document.querySelector('.wishes-container').appendChild(wishCard);
+            
+            document.getElementById('wish-title').value = '';
+            document.getElementById('wish-text').value = '';
+            
+            showHeartAnimation();
+        }
+
+        // Promises System
+        const defaultPromises = [
+            "I promise to always make you smile",
+            "I promise to support your dreams",
+            "I promise to be there when you need me",
+            "I promise to love you more each day",
+            "I promise to be honest and faithful"
+        ];
+
+        function loadPromises() {
+            let promises = JSON.parse(localStorage.getItem('lovePromises') || '[]');
+            if (promises.length === 0) {
+                promises = defaultPromises.map((text, index) => ({ 
+                    id: index, 
+                    text, 
+                    kept: false 
+                }));
+                localStorage.setItem('lovePromises', JSON.stringify(promises));
+            }
+            
+            const container = document.getElementById('promises-list');
+            container.innerHTML = '';
+            
+            promises.forEach(promise => {
+                const item = document.createElement('div');
+                item.className = 'promise-item';
+                item.innerHTML = `
+                    <input type="checkbox" class="promise-checkbox" ${promise.kept ? 'checked' : ''} 
+                           onchange="togglePromise(${promise.id})">
+                    <span style="color: #666; flex: 1; ${promise.kept ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${promise.text}</span>
+                    <span style="font-size: 1.2em;">${promise.kept ? '✅' : '💝'}</span>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function togglePromise(id) {
+            let promises = JSON.parse(localStorage.getItem('lovePromises') || '[]');
+            const promise = promises.find(p => p.id === id);
+            if (promise) {
+                promise.kept = !promise.kept;
+                localStorage.setItem('lovePromises', JSON.stringify(promises));
+                loadPromises();
+            }
+        }
+
+        function addPromise() {
+            const promiseText = document.getElementById('new-promise').value.trim();
+            if (!promiseText) {
+                alert('Please write a promise! 💕');
+                return;
+            }
+            
+            let promises = JSON.parse(localStorage.getItem('lovePromises') || '[]');
+            const newPromise = {
+                id: Date.now(),
+                text: promiseText,
+                kept: false
+            };
+            promises.push(newPromise);
+            localStorage.setItem('lovePromises', JSON.stringify(promises));
+            
+            document.getElementById('new-promise').value = '';
+            showHeartAnimation();
+            loadPromises();
+        }
+
+        // Quiz System
+        const quizQuestions = [
+            {
+                question: "What makes Precious smile the most?",
+                options: ["Thoughtful surprises", "Quality time together", "Sweet messages", "All of the above"],
+                correct: 3
+            },
+            {
+                question: "What's Precious's favorite thing about us?",
+                options: ["Our conversations", "Our adventures", "Our connection", "Everything"],
+                correct: 3
+            },
+            {
+                question: "How does Precious like to spend her free time?",
+                options: ["Reading", "Exploring new places", "Being with loved ones", "Creative activities"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const container = document.getElementById('quiz-questions');
+            const startContainer = document.getElementById('quiz-container');
+            
+            startContainer.style.display = 'none';
+            container.style.display = 'block';
+            
+            if (currentQuestion >= quizQuestions.length) {
+                showQuizResult();
+                return;
+            }
+            
+            const q = quizQuestions[currentQuestion];
+            container.innerHTML = `
+                <div style="background: #fff0f5; padding: 30px; border-radius: 15px;">
+                    <h3 style="color: #c06c84; margin-bottom: 20px;">Question ${currentQuestion + 1} of ${quizQuestions.length}</h3>
+                    <p style="font-size: 1.2em; color: #666; margin-bottom: 25px;">${q.question}</p>
+                    <div id="quiz-options"></div>
+                </div>
+            `;
+            
+            const optionsContainer = document.getElementById('quiz-options');
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'quiz-option';
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(optionDiv);
+            });
+        }
+
+        function selectAnswer(selected) {
+            const q = quizQuestions[currentQuestion];
+            if (selected === q.correct) {
+                score++;
+            }
+            currentQuestion++;
+            setTimeout(showQuestion, 300);
+        }
+
+        function showQuizResult() {
+            const container = document.getElementById('quiz-questions');
+            const percentage = Math.round((score / quizQuestions.length) * 100);
+            
+            let message = '';
+            if (percentage === 100) {
+                message = "Perfect! You know Precious amazingly well! 💕";
+            } else if (percentage >= 66) {
+                message = "Great job! You understand Precious so well! 💖";
+            } else {
+                message = "Good try! Keep learning more about each other! 💝";
+            }
+            
+            container.innerHTML = `
+                <div class="quiz-result">
+                    <div style="font-size: 4em; margin-bottom: 20px;">🎉</div>
+                    <h3 style="font-size: 2em; margin-bottom: 15px;">Quiz Complete!</h3>
+                    <p style="font-size: 3em; font-weight: bold; margin: 20px 0;">${score}/${quizQuestions.length}</p>
+                    <p style="font-size: 1.3em; margin-bottom: 30px;">${message}</p>
+                    <button onclick="resetQuiz()" class="submit-btn" style="max-width: 300px; margin: 0 auto;">
+                        Try Again 🔄
+                    </button>
+                </div>
+            `;
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-container').style.display = 'block';
+            document.getElementById('quiz-questions').style.display = 'none';
+        }
+
+        // Heart Animation
+        function showHeartAnimation() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-popup';
+            heart.innerHTML = '💖';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        }
+
+        // Initialize on page load
+        window.onload = function() {
+            showSection('messages');
+            loadMessages();
+            loadCounter();
+        };
+    </script>
+</body>
+</html>
